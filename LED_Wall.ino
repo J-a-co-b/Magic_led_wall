@@ -9,8 +9,8 @@ Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_RGB + NEO_KHZ800);
 ESP8266WebServer server(80);
 
 // ================= WIFI - CHANGE THESE =================
-const char* WIFI_SSID = "YOUR_WIFI_NAME";
-const char* WIFI_PASS = "YOUR_WIFI_PASSWORD";
+const char* WIFI_SSID = "USER";
+const char* WIFI_PASS = "PASSWORD";
 
 // ================= MODES =================
 #define MODE_RANDOM 0
@@ -610,8 +610,9 @@ void handleLightning() {
   lightningActive   = true;
   lightningEnd      = millis() + random(150,400);
   lastLightningTime = millis();
+  // Flashes intense RED when button is pressed
   for (int i = 0; i < NUMPIXELS; i += 2)
-    pixels.setPixelColor(i, pixels.Color(220,230,255));
+    pixels.setPixelColor(i, pixels.Color(255, 0, 0)); 
   pixels.show();
   server.send(200,"text/plain","ZAP");
 }
